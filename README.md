@@ -10,24 +10,11 @@ This is an alternative module to the Subsites module; it avoids any session
 tracking of the 'current' website, and doesn't perform any query modification
 at runtime to change the 'site' context of queries you execute
 
-**Compatible with SilverStripe 4.0.x**
-
-* Please see 4.0.x for 3.5 compatibility
-* Please see the 1.2.x version for 3.1 compatibility
-
-## Upgrading to SS4
-
-The following important changes have happened
-
-* Themes must now be explicitly configured in your project config. Set
-  `Site.available_themes` in yml config. This must be a map of themename: Label
-* Site specific Assets folders are not currently supported due to the
-  fundamental change to asset management. This will be reviewed over time
-
+**Compatible with SilverStripe 5.x**
 
 ## Requirements
 
-* SilverStripe 4.*
+* SilverStripe 5.*
 * [MultivalueField](https://github.com/nyeholt/silverstripe-multivaluefield)
 
 ## Installation

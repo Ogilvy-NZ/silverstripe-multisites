@@ -12,21 +12,15 @@
 	],
 	"require":
 	{
-		"silverstripe/cms": "~4.0",
-		"silverstripe/admin": "^1.3",
-		"symbiote/silverstripe-multivaluefield": "~5.0"
+		"silverstripe/cms": "^5.4",
+		"silverstripe/admin": "^2.4",
+		"symbiote/silverstripe-multivaluefield": "^6.1"
 	},
-    "require-dev": {
-        "phpunit/phpunit": "^5.7"
-    },
-	"extra": {
+    "extra": {
         "expose": [
             "client"
         ],
-		"installer-name": "multisites",
-		"branch-alias": {
-			"dev-master": "5.2.x-dev"
-		}
+		"installer-name": "multisites"
 	},
 	"replace": {
 		"sheadawson/silverstripe-multisites": "self.version",
@@ -39,5 +33,11 @@
         }
     },
     "prefer-stable": true,
-    "minimum-stability": "dev"
+    "minimum-stability": "dev",
+	"config": {
+		"allow-plugins": {
+			"composer/installers": true,
+			"silverstripe/vendor-plugin": true
+		}
+	}
 }
