@@ -16,6 +16,9 @@
 		"silverstripe/admin": "^2.4",
 		"symbiote/silverstripe-multivaluefield": "^6.1"
 	},
+    "require-dev": {
+        "phpunit/phpunit": "^9.6"
+    },
     "extra": {
         "expose": [
             "client"
