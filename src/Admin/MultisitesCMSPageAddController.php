@@ -14,7 +14,7 @@ use SilverStripe\CMS\Controllers\CMSPageAddController;
  * An extension to the default page add interface which doesn't allow pages to
  * be created on the root.
  *
- * Can't do a direct extension because that doesn't allow us to control the form object itself. 
+ * Can't do a direct extension because that doesn't allow us to control the form object itself.
  *
  * @package silverstripe-multisites
  */
@@ -40,13 +40,13 @@ class MultisitesCMSPageAddController extends CMSPageAddController {
 
 		$parentMode->removeByName('Top level');
         $parentMode->setValue('child');
-        
+
 		$fields->insertAfter($parent = new TreeDropdownField(
 			'ParentID', '', SiteTree::class, 'ID', 'TreeTitle'
 		), 'ParentModeField');
 
 		$parentID = $this->request->getVar('ParentID');
-		$parentID = $parentID ? $parentID : Multisites::inst()->getCurrentSiteId();
+		$parentID = $parentID ?: Multisites::inst()->getCurrentSiteId();
 
 		$parent->setForm($form);
 		$parent->setValue((int)$parentID);
