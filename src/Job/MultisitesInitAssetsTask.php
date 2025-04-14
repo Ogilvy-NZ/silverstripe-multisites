@@ -5,6 +5,7 @@ namespace Symbiote\Multisites\Job;
 use SilverStripe\Assets\Folder;
 use SilverStripe\Assets\File;
 use SilverStripe\Dev\BuildTask;
+use Symbiote\Multisites\Multisites;
 
 /**
  * move assets to a folder with the name of the current Multisite->Host
@@ -25,7 +26,7 @@ class MultisitesInitAssetsTask extends BuildTask
     public function run($request)
     {
         $currentSite = Multisites::inst()->getCurrentSite();
-        $folderName  = $currentSite->Host ? $currentSite->Host : "site-$currentSite->ID";
+        $folderName  = $currentSite->Host ?: "site-$currentSite->ID";
         $folder      = Folder::find_or_make($folderName);
 
         $files = File::get()->filter('ParentID', array(0))->exclude('ID', $folder->ID);

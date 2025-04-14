@@ -118,9 +118,7 @@ class Multisites_SideReport_RecentlyEdited extends RecentlyEditedReport
     public function columns()
     {
         $columns               = MultisitesReport::getMultisitesReportColumns();
-        $columns['LastEdited'] = array(
-            "title" => "Last Edited",
-        );
+
         $columns['LastEdited'] = array(
             "title" => "Last Edited",
         );

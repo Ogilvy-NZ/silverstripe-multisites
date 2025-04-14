@@ -2,6 +2,7 @@
 
 namespace Symbiote\Multisites;
 
+use Psr\Container\NotFoundExceptionInterface;
 use SilverStripe\Security\Security;
 use Symbiote\Multisites\Model\Site;
 
@@ -239,7 +240,7 @@ class Multisites
      */
     public function getActiveSite()
     {
-        $controller = Controller::has_curr() ? Controller::curr() : null;
+        $controller = Controller::curr() ?: null;
         if ($controller instanceof CMSPageEditController) {
 
             // requests to admin/pages/edit/EditorToolbar/viewfile?ID=XX

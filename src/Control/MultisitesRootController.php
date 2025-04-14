@@ -1,6 +1,7 @@
 <?php
 namespace Symbiote\Multisites\Control;
 
+use SilverStripe\Control\HTTPResponse;
 use Symbiote\Multisites\Multisites;
 use SilverStripe\Core\ClassInfo;
 use SilverStripe\ORM\DB;
@@ -13,7 +14,7 @@ use SilverStripe\CMS\Controllers\RootURLController;
  */
 class MultisitesRootController extends RootURLController {
 
-	public function handleRequest(HTTPRequest $request) {
+	public function handleRequest(HTTPRequest $request): HTTPResponse {
 		self::$is_at_root = true;
         $this->beforeHandleRequest($request);
 
@@ -51,28 +52,22 @@ class MultisitesRootController extends RootURLController {
         $this->afterHandleRequest();
 
         return $this->getResponse();
-
-		
-
-		
-
-		return $response;
 	}
-	
+
 	/**
 	 * The the (relative) homepage link.
 	 * TODO: Should this deal with HomepageForDomain and Translatable the same way the core equivalent does?
-	 * 
+	 *
 	 * @return string
 	 */
 	public static function get_homepage_link() {
 		return Config::inst()->get(get_called_class(), 'default_homepage_link');
 	}
-	
+
 	/**
 	 * Returns TRUE if a request to a certain page should be redirected to the site root (i.e. if the page acts as the
 	 * home page).
-	 * 
+	 *
 	 * TODO: This function wouldn't be required if core called static::get_homepage_link() rather than self::get_homepage_link(). Raise a bug?
 	 *
 	 * @param SiteTree $page
