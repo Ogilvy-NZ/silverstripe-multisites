@@ -28,9 +28,9 @@ class MultisitesCMSMainExtension extends LeftAndMainExtension {
 	}
 
 	/**
-	 * @var Path to editor.css for themes. 
-	 * 
-	 * Key is the theme dir; value is the directory path beneath the theme dir if not "css" (e.g. "public/css") 
+	 * @var Path to editor.css for themes.
+	 *
+	 * Key is the theme dir; value is the directory path beneath the theme dir if not "css" (e.g. "public/css")
 	 */
 	private static $multisites_editor_css_dir = array();
 
@@ -50,19 +50,19 @@ class MultisitesCMSMainExtension extends LeftAndMainExtension {
 			} else {
 				$cssFile = THEMES_DIR . "/$theme/css/editor.css";
 			}
-			
+
 			if(file_exists(BASE_PATH . '/' . $cssFile)){
 				// NOTE: This ensures editor.css is invalided properly when it's updated.
 				$cssFile = $cssFile.'?m='.filemtime(BASE_PATH.'/'.$cssFile);
-				
+
 				$htmlEditorConfig->setOption('content_css', $cssFile);
-				
+
 				if($this->owner->getRequest()->isAjax() && $this->owner instanceof CMSPageEditController){
 					// Add editor css path to header so javascript can update ssTinyMceConfig.content_css
-					$this->owner->getResponse()->addHeader('X-HTMLEditor_content_css', $cssFile);	
+					$this->owner->getResponse()->addHeader('X-HTMLEditor_content_css', $cssFile);
 				}
-				
-			}	
+
+			}
 		}
 	}
 
@@ -104,7 +104,7 @@ class MultisitesCMSMainExtension extends LeftAndMainExtension {
         $classNameField = $form->Fields()->dataFieldByName('ClassName');
         if ($classNameField) {
             $className = $classNameField->Value();
-            if ($className === Site::class) 
+            if ($className === Site::class)
             {
             	$form->Fields()->removeByName(['SilverStripeNavigator']);
                 $form->removeExtraClass('cms-previewable');
@@ -134,8 +134,8 @@ class MultisitesCMSMainExtension extends LeftAndMainExtension {
 
 		$form->Fields()->insertAfter($site, 'q[Term]');
 	}
-	
-	
+
+
 	/**
 	 * Makes the default page id the first child of the current site
 	 * This makes the site tree view load with the current site open instead of just the first one
@@ -143,7 +143,7 @@ class MultisitesCMSMainExtension extends LeftAndMainExtension {
 	public function updateCurrentPageID(&$id){
 		if (!$id) {
 			if($site = Multisites::inst()->getCurrentSite()){
-				$id = $site->Children()->first();
+				$id = $site->Children()->first()->ID;
 			}
 		}
 	}
